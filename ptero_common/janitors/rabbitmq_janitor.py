@@ -1,5 +1,6 @@
 from .base import Janitor
-from .exceptions import *  # noqa
+from . import exceptions
+
 from urlparse import urljoin, urlunparse
 from ptero_common import nicer_logging
 import requests
@@ -43,7 +44,7 @@ class RabbitMQJanitor(Janitor):
         if self.has_connections():
             LOG.error('Found unexpected remaining connections at %s: %s',
                       self.sanitized_url, self.connection_names())
-            raise JanitorException()
+            raise exceptions.JanitorException()
 
     def kill_connection(self, connection_name):
         LOG.debug('Killing connection %s at %s',
@@ -59,7 +60,7 @@ class RabbitMQJanitor(Janitor):
         if self.has_queues():
             LOG.error('Found unexpected remaining queues at %s: %s',
                       self.sanitized_url, self.queue_names())
-            raise JanitorException()
+            raise exceptions.JanitorException()
 
     def delete_queue(self, queue_name):
         LOG.debug('Deleting queue %s at %s', queue_name, self.sanitized_url)
@@ -73,7 +74,7 @@ class RabbitMQJanitor(Janitor):
         if self.has_exchanges():
             LOG.error('Found unexpected remaining exchanges at %s: %s',
                       self.sanitized_url, self.exchange_names())
-            raise JanitorException()
+            raise exceptions.JanitorException()
 
     def delete_exchange(self, exchange_name):
         LOG.debug('Deleting exchanges at %s', self.sanitized_url)
@@ -118,7 +119,7 @@ class RabbitMQJanitor(Janitor):
             LOG.error(
                 'Got unexpected response code (%s) from url %s: %s',
                 response.status_code, self.api_url(*parts), response.text)
-            raise JanitorException()
+            raise exceptions.JanitorException()
 
         if response.status_code == 204:
             return
