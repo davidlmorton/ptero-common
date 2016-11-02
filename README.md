@@ -1,6 +1,6 @@
 # PTero common scripts and functions
 [![Build Status](https://travis-ci.org/davidlmorton/ptero-common.svg?branch=master)](https://travis-ci.org/davidlmorton/ptero-common)
-[![Coverage Status](https://img.shields.io/coveralls/mark-burnett/ptero-common.svg)](https://coveralls.io/r/mark-burnett/ptero-common)
+[![Coverage Status](https://coveralls.io/repos/github/davidlmorton/ptero-common/badge.svg)](https://coveralls.io/github/davidlmorton/ptero-common)
 
 ## Description
 
